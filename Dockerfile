@@ -1,5 +1,6 @@
 FROM python:alpine
 ENV TOKEN "Your Discord Token"
+ENV SPOILER "false"
 
 WORKDIR /usr/src/app
 COPY requirements.txt ./
