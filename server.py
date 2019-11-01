@@ -39,4 +39,4 @@ class AMPBot(discord.Client):
 
 
 client = AMPBot()
-client.run(str(os.getenv("TOKEN", "NjI3NzEzODcxMjU1MzA2MjUw.Xbypyg.RJHsT8dHhhE4z-WR2ltPOO-BsMg")))
+client.run(str(os.getenv("TOKEN")))
