@@ -15,8 +15,9 @@ class AMPBot(discord.Client):
             if "http://" in content.lower() or "https://" in content.lower():
                 if "ampproject.org" in content.lower():
                     await message.delete()
-                    await message.channel.send("Please send a real link, not an amp link you plebian.")
+                    msg = "{}: Please send a real link, not an amp link you plebian!".format(message.author.mention)
+                    await message.channel.send(msg)
 
 
 client = AMPBot()
-client.run(str(os.getenv("TOKEN")))
+client.run(str(os.getenv("TOKEN", "NjI3NzEzODcxMjU1MzA2MjUw.XbyflA.sTzi9STqTt6494ZxOJofZgB--Zo")))
