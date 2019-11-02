@@ -15,7 +15,6 @@ class AMPBot(discord.Client):
             return
         else:
             content = message.content
-            print(content)
             if "http://" in content.lower() or "https://" in content.lower():
                 urls = re.findall('[localhost|http|https|ftp|file]+://[\w\S(\.|:|/)]+', content)
                 test = False
@@ -33,11 +32,14 @@ class AMPBot(discord.Client):
                                     test_url = url
                 if test:
                     await message.delete()
-                    msg = os.getenv("MESSAGE", "{name} sent an amp link. Please use real links dipshit.\n ||{url}||")
+                    tokens = {}
+                    msg = os.getenv("MESSAGE", "{name} sent an amp link. Please use real links dipshit.\n||<{url}>||")
                     if "{name}" in msg:
-                        msg = msg.format(name=message.author.mention)
+                        tokens['name'] = message.author.mention
                     if "{url}" in msg:
-                        msg = msg.format(url=test_url)
+                        tokens['url'] = test_url
+
+                    msg = msg.format(**tokens)
                     await message.channel.send(msg)
 
 
