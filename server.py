@@ -33,9 +33,11 @@ class AMPBot(discord.Client):
                                     test_url = url
                 if test:
                     await message.delete()
-                    msg = "{} sent an amp link. Please use real links dipshit.".format(message.author.mention)
-                    if os.getenv("SPOILER", "false").lower() == "true":
-                        msg = msg + "\n ||{}||".format(test_url)
+                    msg = os.getenv("MESSAGE", "{name} sent an amp link. Please use real links dipshit.\n ||{url}||")
+                    if "{name}" in msg:
+                        msg = msg.format(name=message.author.mention)
+                    if "{url}" in msg:
+                        msg = msg.format(url=test_url)
                     await message.channel.send(msg)
 
 

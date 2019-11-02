@@ -1,6 +1,6 @@
 FROM python:alpine
 ENV TOKEN "Your Discord Token"
-ENV SPOILER "false"
+ENV MESSAGE "{name} sent an amp link. Please use real links dipshit.\n ||{url}||"
 
 WORKDIR /usr/src/app
 COPY requirements.txt ./
