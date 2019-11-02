@@ -1,5 +1,6 @@
 FROM python:alpine
 ENV TOKEN "Your Discord Token"
+ENV DELETE "false"
 ENV MESSAGE "{name} sent an amp link. Please use real links dipshit.\n ||{url}||"
 
 WORKDIR /usr/src/app

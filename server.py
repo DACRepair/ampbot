@@ -31,7 +31,9 @@ class AMPBot(discord.Client):
                                     test = True
                                     test_url = url
                 if test:
-                    await message.delete()
+                    if os.getenv("DELETE", "false").lower() == "true":
+                        await message.delete()
+
                     tokens = {}
                     msg = os.getenv("MESSAGE", "{name} sent an amp link. Please use real links dipshit.\n||<{url}>||")
                     if "{name}" in msg:
