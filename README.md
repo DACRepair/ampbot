@@ -9,14 +9,17 @@ docker run -d -it \
 ```
 Env Vars:
 
-| ENV | Usage |
-| TOKEN | Discord Token |
-| MESSAGE | The message it will send to the channel |
-| DELETE | Deletes the message (`true` or `false`) |
-| POLR_URL | URL Base to a Polr URL Shortener instance |
-| POLR_KEY | API Key to Polr URL Shortener |
+| ENV | Usage | Default |
+| --- | --- | --- |
+| TOKEN | Discord Token | |
+| MESSAGE | The message it will send to the channel | *see dockerfile* |
+| DELETE | Deletes the message (`true` or `false`) | false |
+| POLR_URL | URL Base to a Polr URL Shortener instance. If left blank it will disable this feature. | |
+| POLR_KEY | API Key to Polr URL Shortener | |
 
 Message Tokens:
+
 | Token | Value |
+| --- | --- |
 | `{name}` | A mention replacement for the users name |
 | `{url}` | the AMP url |
