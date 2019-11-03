@@ -4,13 +4,15 @@ import re
 import requests
 import lxml.html as lh
 
+polr_url = os.getenv("POLR_URL", None)
+polr_api = os.getenv("POLR_KEY", None)
+
 
 class AMPBot(discord.Client):
     async def on_ready(self):
         print('Logged on as', self.user)
 
     async def on_message(self, message):
-        # don't respond to ourselves
         if message.author == self.user:
             return
         else:
@@ -39,6 +41,11 @@ class AMPBot(discord.Client):
                     if "{name}" in msg:
                         tokens['name'] = message.author.mention
                     if "{url}" in msg:
+                        if polr_url is not None:
+                            params = dict(key=polr_api, url=test_url, is_secret="true")
+                            req = requests.get(polr_url.rstrip("/") + "/api/v2/action/shorten", params=params)
+                            if req.status_code == 200:
+                                test_url = req.text
                         tokens['url'] = test_url
 
                     msg = msg.format(**tokens)
