@@ -1,8 +1,9 @@
 import os
-import discord
 import re
-import requests
+
+import discord
 import lxml.html as lh
+import requests
 
 polr_url = os.getenv("POLR_URL", None)
 polr_api = os.getenv("POLR_KEY", None)
@@ -29,7 +30,11 @@ class AMPBot(discord.Client):
                         if data.status_code == 200:
                             doc = lh.fromstring(data.text)
                             for item in doc.iter('html'):
-                                if "amp" in list(item.attrib.keys()):
+                                if True in ["amp" in str(x).lower() for x in item.keys()]:
+                                    test = True
+                                    test_url = url
+                            for item in doc.iter('style'):
+                                if True in ["amp" in str(x).lower() for x in item.keys()]:
                                     test = True
                                     test_url = url
                 if test:
